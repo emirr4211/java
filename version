@@ -1,1 +1,19 @@
-1.0.0
+-- Bu script, her 20 saniyede bir oyuncuyu belirli bir koordinata taşır
+
+-- Hedef koordinat
+local targetPosition = Vector3.new(-11.973, 9.02, 410.428)
+
+-- Fonksiyon: Oyuncuyu hedef koordinata taşır
+local function teleportPlayers()
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            player.Character.HumanoidRootPart.Position = targetPosition
+        end
+    end
+end
+
+-- Sonsuz döngü: Her 20 saniyede bir oyuncuları hedef koordinata taşır
+while true do
+    teleportPlayers()
+    wait(1)  -- 1 saniye bekler
+end
